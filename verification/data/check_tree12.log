@@ -1,0 +1,7 @@
+side wires 13512 pairs 23760
+F2: center + side = identity  OK
+sampled wire paths checked: 40 bad: 0
+data chains nested, group spans nondegenerate: OK
+tree h=12: side wires 10544  F2 cover OK, all wires orthogonal
+sampled full label chains nested OK
+data chains through all tree levels nested; node spans nondegenerate: OK

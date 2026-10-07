@@ -1,0 +1,4 @@
+{'h': 14, 'v': 364, 'rects': 3360, 'perkernel_src': 2604, 'perkernel_tgt': 2604, 'cross_src': 2005, 'cross_tgt': 2005, 'side_old': 7840, 'side_new': 6642}
+{'h': 16, 'v': 560, 'rects': 5376, 'perkernel_src': 4144, 'perkernel_tgt': 4144, 'cross_src': 3201, 'cross_tgt': 3201, 'side_old': 12544, 'side_new': 10658}
+{'h': 18, 'v': 816, 'rects': 8064, 'perkernel_src': 6192, 'perkernel_tgt': 6192, 'cross_src': 4793, 'cross_tgt': 4793, 'side_old': 18816, 'side_new': 16018}
+{'h': 20, 'v': 1140, 'rects': 11520, 'perkernel_src': 8820, 'perkernel_tgt': 8820, 'cross_src': 6837, 'cross_tgt': 6837, 'side_old': 26880, 'side_new': 22914}

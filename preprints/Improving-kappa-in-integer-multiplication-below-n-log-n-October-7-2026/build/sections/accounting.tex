@@ -1,0 +1,79 @@
+\section{Where \texorpdfstring{$\kappa$}{kappa} comes from}\label{sec:accounting}
+
+\subsection{The cost table and its margins}
+
+Section~9.8 of \cite{OAI} divides every cost by $V = Tp = \Theta(n)$ and expresses it as a power of $p$, where $d = \Theta(p^\varepsilon)$ is the transform dimension, $\ell = \Theta(p^{1-\varepsilon})$ the axis width and $K = \Theta(p^{\varepsilon c})$ the chunk width \cite[(39)]{OAI}. Table~\ref{tab:costs} reproduces \cite[Table~1]{OAI} with our two modified rows. The margins below one are
+\begin{equation}\label{eq:gaps}
+\begin{gathered}
+g_1 = 1-\varepsilon(1+c),\quad g_2 = \varepsilon c(1-\tau),\quad g_3 = \varepsilon(1-\lambda'),\quad g_4 = (1-\tau)(1-\varepsilon),\\
+g_5 = \tfrac14 - \delta - \tfrac54\varepsilon,\quad g_6 = 1-\delta-\varepsilon,\quad g_7 = \varepsilon,
+\end{gathered}
+\end{equation}
+which differ from \cite[(45)]{OAI} in $g_4$ (package B) and $g_5$ (package E). The time bound holds with any $\kappa < \min_i g_i$, because every fixed power of $\log p$ is absorbed by $p^{\min g_i - \kappa}$; \cite{OAI} takes $\kappa = \tfrac12 \min_i g_i$ and so do we.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Operation & normalized cost & power of $p$ \\
+\midrule
+Prefix-slot moves and individual butterfly rounds & $dK$ & $\varepsilon(1+c)$ \\
+Chunk exchanges for transform layout & $pK^{\tau-1}$ & $1-\varepsilon c(1-\tau)$ \\
+Simultaneous butterfly rounds & $\ell d^{\lambda'}$ & $1-\varepsilon(1-\lambda')$ \\
+CRT and axis layouts (package B) & $d(1+\ell^\tau)$ & $\varepsilon + \tau(1-\varepsilon)$ \\
+Gaussian line maps (package E) & $dp^{1/2+\delta}\alpha$ & $3/4+\delta+5\varepsilon/4$ \\
+Chirps, twists and scalar products & $dp^\delta$ & $\varepsilon+\delta$ \\
+Packed polynomial products & $\log(rp)$ & $1-\varepsilon$ \\
+\bottomrule
+\end{tabular}
+\caption{\cite[Table~1]{OAI} with the rows changed by packages B and E. The paper's rows are $d^2(1+\ell^\tau)$ with power $\tau+\varepsilon(2-\tau)$, and $dp^{1/2+\delta}\alpha$ with power $3/4+\delta+3\varepsilon/2$.}
+\label{tab:costs}
+\end{table}
+
+The parameters are also subject to the layer conditions of \cite[\S9.1]{OAI},
+\begin{equation}\label{eq:layer}
+\max\{\tau,\sigma\} < \lambda < 1,\qquad \tau(1+c/\beta) < \lambda,\qquad \max\{\lambda,\ \sigma+\beta(1-\sigma)\} < \lambda' < 1,
+\end{equation}
+and to the side conditions $c>0$, $0<\delta<1/8$, $\varepsilon(1+c)<1$, $\varepsilon+\delta<1$, together with the dimension and guard conditions discussed in Section~\ref{sec:outside}. Here $\tau$ and $\sigma$ are the interchange exponents supplied by the bit and complex motif networks.
+
+\subsection{The rank condition}
+
+A motif network is a circuit with $W$ wires and pointwise bit gates that realizes a permutation $\rho$ of its roles, together with rational $m\times m$ matrices on terminals and gates. With $A_e = M_{\mathrm{head}(e)} - M_{\mathrm{tail}(e)}$ for each edge $e$, the requirement \cite[(11)]{OAI} is
+\[
+M_{\mathrm{out}(\rho(w))} - M_{\mathrm{in}(w)} = I_m \quad (1\le w\le W), \qquad s = \sum_e \rank_\Q A_e < Wm,
+\]
+and \cite[Prop.~11]{OAI} then interchanges chunks in time $O(Ve^\tau)$ for every rational $\tau$ with $s/W < m^\tau$. Put
+\[
+\eta = 1 - \frac{s}{Wm}, \qquad \theta = 1-\tau .
+\]
+Any $\theta$ with $\theta\ln m < \eta$ is admissible, since then $m^{-\theta} > 1-\theta\ln m > 1-\eta = s/(Wm)$. The verifier picks a dyadic $\theta$ just below $\eta/\ln m$, with $\ln m$ bounded above by interval arithmetic.
+
+For the label construction of \cite[\S3]{OAI}, every scratch wire is restored, each data pair saves exactly one rank at its endpoints, and decreasing edges occur only at centre wires. This gives
+\begin{equation}\label{eq:s}
+s = Wm - N + 2L, \qquad \eta = \frac{N-2L}{Wm},
+\end{equation}
+where $N$ is the number of data pairs and $L$ is the total dimension lost on decreasing edges \cite[Prop.~7]{OAI}. For the paper's bit network on $h=100$ points, $\theta_b \approx 2^{-39.74}$.
+
+\subsection{Why the bit network binds}
+
+The layer condition $\tau(1+c/\beta) < \lambda < 1$ forces $c < \beta\theta_b/(1-\theta_b)$, so $c \approx \theta_b$ and
+\[
+g_2 = \varepsilon c(1-\tau) \approx \varepsilon\theta_b^2 .
+\]
+Every other margin can be made much larger. The complex network enters only through $\sigma$ in \eqref{eq:layer}, and $g_3 = \varepsilon(1-\lambda') \approx \varepsilon(1-\beta)(1-\sigma)$ stays slack once $\beta$ is close to $1$. Margin $g_5$ caps $\varepsilon$ below $1/5$ (Section~\ref{sec:outside}). Hence
+\[
+\kappa \approx \tfrac12\varepsilon\theta_b^2 \approx \theta_b^2/10 .
+\]
+For package K, $\theta_b = 2^{-28.004}$ gives $\theta_b^2/10 \approx 2^{-59.33}$, which matches the verified value. Since $\kappa$ scales as $\theta_b^2$, each bit gained in $\theta_b$ is worth two bits of $\kappa$. Everything after package C is therefore about $\theta_b$.
+
+The full parameter set of package K is
+\begin{gather*}
+1-\tau = 2^{-28.004},\quad 1-\sigma = 2^{-31.154},\quad c = 2^{-28.004}\ \text{(rounded)},\quad 1-\beta = 2^{-23.26},\\
+\varepsilon = 0.199992,\quad \delta = 2^{-20} \approx 9.54\cdot 10^{-7},
+\end{gather*}
+with margins
+\[
+g_1 = g_6 = 2^{-0.322},\ g_2 = 2^{-58.329},\ g_3 = 2^{-56.735},\ g_4 = 2^{-28.326},\ g_5 = 2^{-16.830},\ g_7 = 2^{-2.322}.
+\]
+Then $\min g_i = g_2 = 2^{-58.329}$. Half of it, rounded down to a dyadic rational, is $\kappa = 2^{-59.335}$.

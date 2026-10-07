@@ -1,0 +1,12 @@
+\section{Status of the claims}\label{sec:status}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Machine-checked exactly.} All numerical conditions for every package (exact rationals with interval logarithms). The bit-network constructions of packages I, J and K, built gate by gate for the parameters listed in Section~\ref{sec:verification}: $\F_2$ correctness, nested label chains, nondegenerate labels and wire counts. Rectangle counts for $30\le n\le 56$, which include the values $n = 49, 50$ used here.
+\item \textbf{Confirmed by computation but not proved.} The closed forms for the chain counts (J up to $h = 34$, K up to $h = 31$), which are then used at $h = 50, 51$. A proof of $h(h-3)^2$ from the cyclic-gap classification of Section~\ref{sec:bit} would close this gap; we have the classification but not a written proof of the widths.
+\item \textbf{Argued in outline only.} The changes to the procedures of \cite{OAI}: non-adjacent axis exposure (B), the guard depth with leaf size $d^\beta$ (C), the choice of $\alpha$ (E), stage-$1\to3$ scratch reuse (D), and the transfer of the new network into \cite[Prop.~11]{OAI}. The research notes in the repository contain the arguments as they were developed. Each needs a careful written proof before the result should be relied on.
+\item \textbf{Not independent.} The verifier is our own transcription of the constraint system of \cite{OAI}. It reproduces the paper's network counts exactly, but it is not independent of our reading of the paper.
+\end{itemize}
+
+Nothing here is formalized in Lean.
+
+\paragraph{How this was produced.} The constructions, searches and verification code were produced by Claude Opus~5.5 (Anthropic), working as an agent in an extended Claude Code session, directed by the author. Errors in the outline arguments are possible, and corrections are welcome.

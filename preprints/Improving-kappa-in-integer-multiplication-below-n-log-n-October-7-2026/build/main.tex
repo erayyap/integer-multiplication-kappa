@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,array,tabularx}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\renewcommand{\thetheorem}{\Alph{theorem}}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\lgn}{\lg n}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\spn}{span}
+
+\title{Integer multiplication below $n\log n$:\\ improving $\kappa$ from $2^{-182}$ to $2^{-59.335}$}
+\author{Eray Yapağcı\thanks{The constructions, computations and text were produced by Claude Opus~5.5 (Anthropic) in an agentic Claude Code session directed by the author; see the repository README.}}
+\date{October 7, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The OpenAI preprint \emph{Integer multiplication below $n\log n$} \cite{OAI} gives a deterministic multitape Turing machine that multiplies two $n$-bit integers in time $O(n(\lgn)^{1-\kappa})$ with $\kappa = 2^{-182}$; its constants are explicitly conservative. We keep the architecture of that algorithm and improve the exponent to $\kappa = 2^{-59.335}$ (any $\kappa < 2^{-58.329}$ is admissible before the paper's halving convention). Most of the gain comes from a new construction of the bit-level wire network that supplies the rank saving in the paper's chunk-interchange procedure: side wires become rectangles fed by copy wires whose label chains are shared across kernels, with cyclic point orders, giving $2h(h-3)^2$ copy chains per invocation. The remaining gain comes from re-tuned constants and three local changes to the cost accounting (axis exposure, the resampling parameter $\alpha$, and the guard depth). Every package is checked by an exact rational verifier, and the bit network is built gate-by-gate and checked for $h \le 16$. We also record structural limits (this architecture cannot pass about $\kappa \approx 2^{-50.5}$) and several negative results on alternative designs. This is computer-assisted work and has not been refereed.
+\end{abstract}
+
+\tableofcontents
+
+\input{sections/introduction}
+\input{sections/accounting}
+\input{sections/outside}
+\input{sections/bitnetwork}
+\input{sections/verification}
+\input{sections/limits}
+\input{sections/status}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

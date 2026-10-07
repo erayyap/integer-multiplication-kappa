@@ -1,0 +1,121 @@
+== package A3: bit h=46 complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-35.693  1-sigma = 2^-31.154  c = 2^-35.693  1-beta = 2^-23.26  eps = 0.000000  delta = 0.0625
+   g1 = 2^-0.000
+   g2 = 2^-108.078
+   g3 = 2^-91.789
+   g4 = 2^-36.693
+   g5 = 2^-2.415
+   g6 = 2^-0.093
+   g7 = 2^-36.693
+   all constraints hold
+   min g = 2^-108.078;  kappa = min g/2 (paper convention) -> kappa = 2^-109.084; any kappa < 2^-108.078 is valid
+== package B: bit h=46 complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-35.693  1-sigma = 2^-31.154  c = 2^-35.693  1-beta = 2^-23.26  eps = 0.071428  delta = 0.0625
+   g1 = 2^-0.107
+   g2 = 2^-75.193
+   g3 = 2^-58.904
+   g4 = 2^-35.800
+   g5 = 2^-3.637
+   g6 = 2^-0.207
+   g7 = 2^-3.807
+   all constraints hold
+   min g = 2^-75.193;  kappa = min g/2 (paper convention) -> kappa = 2^-76.199; any kappa < 2^-75.193 is valid
+== package C: bit h=46 complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-35.693  1-sigma = 2^-31.154  c = 2^-35.693  1-beta = 2^-23.26  eps = 0.166659  delta = 9.54e-07
+   g1 = 2^-0.263
+   g2 = 2^-73.971
+   g3 = 2^-57.681
+   g4 = 2^-35.956
+   g5 = 2^-16.541
+   g6 = 2^-0.263
+   g7 = 2^-2.585
+   all constraints hold
+   min g = 2^-73.971;  kappa = min g/2 (paper convention) -> kappa = 2^-74.978; any kappa < 2^-73.971 is valid
+== package D: bit h=(48, 42, 48) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-35.071  1-sigma = 2^-31.154  c = 2^-35.071  1-beta = 2^-23.26  eps = 0.166659  delta = 9.54e-07
+   g1 = 2^-0.263
+   g2 = 2^-72.728
+   g3 = 2^-57.736
+   g4 = 2^-35.335
+   g5 = 2^-16.541
+   g6 = 2^-0.263
+   g7 = 2^-2.585
+   all constraints hold
+   min g = 2^-72.728;  kappa = min g/2 (paper convention) -> kappa = 2^-73.733; any kappa < 2^-72.728 is valid
+== package E: bit h=(48, 42, 48) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-35.071  1-sigma = 2^-31.154  c = 2^-35.071  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-72.465
+   g3 = 2^-57.473
+   g4 = 2^-35.393
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-72.465;  kappa = min g/2 (paper convention) -> kappa = 2^-73.473; any kappa < 2^-72.465 is valid
+== package F: bit h=((48, 5), (44, 5), (48, 5)) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-33.407  1-sigma = 2^-31.154  c = 2^-33.407  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-69.136
+   g3 = 2^-56.735
+   g4 = 2^-33.729
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-69.136;  kappa = min g/2 (paper convention) -> kappa = 2^-70.142; any kappa < 2^-69.136 is valid
+== package G: bit h=(49, 43, 49) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-32.644  1-sigma = 2^-31.154  c = 2^-32.644  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-67.610
+   g3 = 2^-56.735
+   g4 = 2^-32.966
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-67.610;  kappa = min g/2 (paper convention) -> kappa = 2^-68.616; any kappa < 2^-67.610 is valid
+== package H: bit h=(51, 48, 51) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-28.894  1-sigma = 2^-31.154  c = 2^-28.894  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-60.110
+   g3 = 2^-56.735
+   g4 = 2^-29.216
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-60.110;  kappa = min g/2 (paper convention) -> kappa = 2^-61.114; any kappa < 2^-60.110 is valid
+== package I: bit h=(51, 50, 51) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-28.345  1-sigma = 2^-31.154  c = 2^-28.345  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-59.012
+   g3 = 2^-56.735
+   g4 = 2^-28.667
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-59.012;  kappa = min g/2 (paper convention) -> kappa = 2^-60.017; any kappa < 2^-59.012 is valid
+== package J: bit h=(51, 50, 51) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-28.130  1-sigma = 2^-31.154  c = 2^-28.130  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-58.582
+   g3 = 2^-56.735
+   g4 = 2^-28.452
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-58.582;  kappa = min g/2 (paper convention) -> kappa = 2^-59.591; any kappa < 2^-58.582 is valid
+== package K: bit h=(51, 50, 51) complex h=25  nu=11 log_m B<=10.2796
+   1-tau = 2^-28.004  1-sigma = 2^-31.154  c = 2^-28.004  1-beta = 2^-23.26  eps = 0.199992  delta = 9.54e-07
+   g1 = 2^-0.322
+   g2 = 2^-58.329
+   g3 = 2^-56.735
+   g4 = 2^-28.326
+   g5 = 2^-16.830
+   g6 = 2^-0.322
+   g7 = 2^-2.322
+   all constraints hold
+   min g = 2^-58.329;  kappa = min g/2 (paper convention) -> kappa = 2^-59.335; any kappa < 2^-58.329 is valid

@@ -1,0 +1,31 @@
+\section{Verification}\label{sec:verification}
+
+All code is in \texttt{verification/} of the repository \cite{repo}.
+
+\paragraph{The constraint verifier (\texttt{scripts/verify.py}).} For each package it recomputes $W$, $L$, $s$, $\eta$ and $\theta$ for both motif networks as exact rationals. It then evaluates every condition of Sections~\ref{sec:accounting} and~\ref{sec:outside} with exact fractions, using rigorous interval bounds (\texttt{mpmath.iv}) only for $\ln m$ and $\log_m B$. It prints the margins $g_1,\dots,g_7$. Before any change it reproduces the paper's $h = 100$ counts exactly (\texttt{scripts/networks.py}). The run is deterministic: \texttt{make verify} regenerates \texttt{data/verify\_all.txt} byte for byte.
+
+\paragraph{Gate-level network checks (\texttt{scripts/check\_copy.py}, \texttt{scripts/check\_cross.py}).} These build one complete invocation of the bit network: every wire, gate and label, with labels as explicit subspaces of $\Q^h$ computed modulo the prime $p = 1\,000\,003$. They check that:
+\begin{enumerate}[leftmargin=*]
+\item over $\F_2$, for random inputs and random initial scratch values, the network maps $y\mapsto y+x$ and restores $x$ and every scratch wire;
+\item along every wire the label sequence (source, gates in time order, sink) is nested, and the only decreasing edges are the centre edges, each losing $h$;
+\item every gate label is nondegenerate for $I - J/9$;
+\item the wire counts equal the formulas of Section~\ref{sec:bit}.
+\end{enumerate}
+With \texttt{DUAL=1} they build the stage-2 dual network instead.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+construction & stage 1 & stage 2 (dual) \\
+\midrule
+sorted cover, per-kernel chains (I) & $h = 8, 10, 11, 12, 13, 14$ & $h = 8, 10, 12, 13$ \\
+global cross-kernel chains (J) & $h = 8, 10, 12$ & $h = 8, 10, 12$ \\
+cyclic cross-kernel chains (K) & $h = 8, 10, 12, 14, 16$ & $h = 8, 10, 12, 14, 16$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For package K the copy counts equal $2h(h-3)^2 - 2\binom h3$ exactly ($288, 740, 1504, 2660, 4288$). At $h = 16$ the check covers $10\,800$ nested wires and $6\,402$ distinct nondegenerate labels. The value $h = 9$ is excluded because $I - J/9$ is itself degenerate there; this is irrelevant at $h\in\{50,51\}$. As a negative control, a deliberately invalid support rule (\texttt{scripts/bad\_supp.py}) fails the checker.
+
+\paragraph{Formula confirmation.} The final value at $h \in\{50,51\}$ uses the counting formulas, not an explicit network. Rectangle counts $\mathrm{rects}(n)$ are computed exactly by enumerating the cover (\texttt{data/sorted\_*.txt}, for $30\le n\le 56$). The chain formulas were confirmed by exact Dilworth-width computation up to $h = 31$ (K) and $h = 34$ (J).

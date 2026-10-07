@@ -1,0 +1,4 @@
+h=14: F2 net map y += x, all scratch restored (3 random trials)
+label chains nested on all 8582 wires; decreasing edges = 14 (centre 3->4 only)
+all 4282 distinct gate labels nondegenerate
+wires: data 728, centre 14, side 3360, copies 4480, scratch total 7854

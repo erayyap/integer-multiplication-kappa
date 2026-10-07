@@ -1,0 +1,7 @@
+h=9: F2 net map y += x, all scratch restored (3 random trials)
+label chains nested on all 1287 wires; decreasing edges = 9 (centre 3->4 only)
+Traceback (most recent call last):
+  File "scripts/check_cross.py", line 229, in <module>
+    assert bad == 0
+           ^^^^^^^^
+AssertionError

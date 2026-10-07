@@ -1,0 +1,4 @@
+restart 0: loss 4.000e+01 max|cross| 4.44e-05 max|self-G0| 1.00e+00
+restart 1: loss 4.000e+01 max|cross| 2.18e-06 max|self-G0| 1.00e+00
+restart 2: loss 4.200e+01 max|cross| 2.08e-05 max|self-G0| 1.00e+00
+h=8 k=2 f=14 p=12 ratio=7.00 best loss 4.000e+01

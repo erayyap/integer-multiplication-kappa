@@ -1,0 +1,30 @@
+\section{Structural limits and negative results}\label{sec:limits}
+
+\subsection{Limits of this architecture}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Three stages are forced.} The endpoint identity needs the swap $\rho(X_a) = Y_a$, which takes three shears, each exposing one tensor factor. Hence $m = h_1h_2h_3$.
+\item \textbf{$\kappa\approx\varepsilon\theta_b^2/2$ is structural.} A breakpoint argument (each swap fixes at most four boundaries, and runs start at width $K$) shows that contiguous-block layouts need about $Dq/8$ swaps of width at least $K$. So the layout cost $pK^{\tau-1}$ cannot be improved by such swaps, and $g_2 = \varepsilon c(1-\tau)$ with $c\approx\theta_b$ remains.
+\item \textbf{The centre is near-optimal.} Every centre wire loses exactly $h$ whatever it gathers, so the centre loss is $c\cdot h$ per invocation. Here $c$ is the minimum $\F_2$-rank of a matrix with unit diagonal that vanishes on pairs with $|S\cap T|\in\{0,2\}$. Restricting to a pencil gives $c\ge h-2$. A CP-SAT search shows $c = 6$ is infeasible at $h = 8$, so at most about $1/h$ of $L$ could be saved. Block centres collapse to singletons under the parity of $4$-sets, and order-type centre rules force the paper's star centre.
+\item \textbf{Headroom.} With stages $(51,50,51)$ re-optimized at each point, side wires per triple of $26.2$, $13.1$, $7$, $3$ and $0$ give $\kappa = 2^{-60.00}$, $2^{-58.11}$, $2^{-56.47}$, $2^{-54.47}$ and $2^{-50.48}$. Package K sits at $20.6$. So even free side wires would not take this architecture past about $2^{-50.5}$.
+\end{itemize}
+
+\subsection{Negative results}
+\begin{itemize}[leftmargin=*]
+\item \textbf{$\F_q$ labels.} The triple graph ($|S\cap T| = 1$) contains a Kneser graph $K(n-1,2)$. A topological bound \cite{Haviv} gives orthogonality dimension at least $n-3$ over every field, so there is no gain.
+\item \textbf{Rectangle merging.} Merging rectangles that share a source or target set saves only about $2\%$ at $h = 10, 12$, because union nodes break chains elsewhere. Merging all twin rectangles at $h = 10$ removes $150$ rectangles but adds $590$ chains.
+\item \textbf{Other point orders.} Reverse, alternating, zig-zag and mid-rotation orders are all worse. Simulated annealing over independent per-kernel orders (about $47\,000$ evaluations at $h = 8, 10$) and an 80-minute cyclic-offset hill climb at each of $h = 10, 12$ all ended at the cyclic order.
+\item \textbf{Rule variants.} Variants of the cover rules, per-kernel mixing of variants, and type-separated keys give identical or worse totals.
+\item \textbf{Endpoint and cycle savings.} A rank bound allows endpoint savings of up to $\dim V$ per data pair, or about $m$ per $\rho$-cycle of scratch roles. No realizable routing was found.
+\end{itemize}
+
+\subsection{Different per-coordinate designs}
+To escape the ceiling of about $2^{-50.5}$ we also changed the per-coordinate design itself. In a generic design, $v$ elements carry labels of dimension $f$ (or $k$-dimensional label subspaces, with $\xi = f/k$), the centre has $\F_2$-rank $c$, and each element carries $w$ scratch wires. Then
+\[
+\eta \approx \frac{1-6/R}{\xi^3(2+2w)}, \qquad R = \frac{v}{c\,\xi};
+\]
+for triples, $\xi = h$ and $R = h/6$.
+\begin{itemize}[leftmargin=*]
+\item \textbf{$7$-subsets with a degree-$3$ centre} ($C = \binom{|S\cap T|}{3}\bmod 2$, side pairs $|S\cap T| = 3$). The ceiling is higher, but each element has $35$ kernels, each a disjointness instance on $4$-sets. Each kernel needs at least $5$ copy chains per side (a hyperplane-covering bound), so an element needs at least about $175$ scratch wires against a budget of about $200$--$300$. No cover approaching this was found.
+\item \textbf{Other polynomial and product designs.} The design $(s,d,e) = (15,7,1)$ has worse side covers. Product designs give $R = \xi/36$. $\F_3$ labels do not help.
+\item \textbf{Subspace (vector-linear) labels.} If each triple received a $k$-dimensional subspace with $\xi\approx h/2$, $\eta$ would grow about $18$-fold at $h = 51$. A numerical search (L-BFGS over all real signatures) at $h = 10$, $k = 2$ finds $f = 14$ and $16$ infeasible, does not reach $f = 18$, and confirms $f = 20 = 2h$. A complex scalar representation lifts to a rational one with $k = 2$, and the real $k=2$ runs at $h = 8$ match the complex ones exactly, so we computed the complex symmetric minrank of the triple graph directly. It equals $h$ for $h = 7$ and $h = 10, 11, 12$ (rank $h-1$ fails), and rank $11$ also fails at $h = 13$. It equals $h-1$ at $h = 8$ and $h = 9$. The $h = 8$ solution is the Steiner system $S(3,4,8)$: seven orthogonal classes of eight triples. Colourings of this kind cost about $h^2/6$ dimensions for large $h$. These lower bounds are numerical evidence, not proofs.
+\end{itemize}

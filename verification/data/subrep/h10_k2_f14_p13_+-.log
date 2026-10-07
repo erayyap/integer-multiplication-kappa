@@ -1,0 +1,2 @@
+restart 0: loss 1.149e+02 max|cross| 9.70e-02 max|self-G0| 1.00e+00
+restart 1: loss 1.144e+02 max|cross| 1.26e-01 max|self-G0| 1.00e+00

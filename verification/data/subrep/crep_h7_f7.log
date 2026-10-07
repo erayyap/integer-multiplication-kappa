@@ -1,0 +1,7 @@
+restart 0: loss 3.748e-18
+restart 1: loss 1.425e-17
+restart 2: loss 5.709e-18
+restart 3: loss 1.872e-16
+restart 4: loss 1.100e-17
+restart 5: loss 6.788e-18
+h=7 f=7 best 3.748e-18

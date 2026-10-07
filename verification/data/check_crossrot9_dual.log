@@ -1,0 +1,6 @@
+h=9: F2 net map x += y (stage 2, dual network), all scratch restored (3 random trials)
+Traceback (most recent call last):
+  File "scripts/check_cross.py", line 218, in <module>
+    assert w[0] == 'C' and rank(a) == h and rank(b) == 0, (w, rank(a), rank(b))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (('C', 8), 9, 1)

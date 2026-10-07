@@ -1,0 +1,1 @@
+{'n': 49, 'rects': 5260, 'cells': 1271256, 'src_chains': 5395, 'tgt_chains': 5395, 'total': 16050}

@@ -1,0 +1,127 @@
+\section{The bit network}\label{sec:bit}
+
+\subsection{The paper's construction}\label{sec:paperbit}
+
+We recall \cite[\S3]{OAI} in the form we need. Fix a ground set $[h]$, let $\mathcal T$ be its $v = \binom h3$ triples, and let $F = \Q^h$ carry the form $\langle x,y\rangle = x^{\mathsf T}(I-J/9)y$. With $t_T$ the indicator vector of $T$,
+\[
+\langle t_S, t_T\rangle = |S\cap T| - 1 ,
+\]
+so triple lines are nondegenerate and $t_S \perp t_T$ exactly when $|S\cap T| = 1$. The ambient label space is $F^{\otimes 3}$, of dimension $m = h^3$. Data roles are indexed by $a = (a_1,a_2,a_3)\in\mathcal T^3$, with $N = v^3$ data pairs $(X_a, Y_a)$.
+
+The network has three stages. Stage $j$ acts along coordinate $j$ as $N/v$ independent \emph{invocations}, one for each value of the other two coordinates. An invocation is a network on the $v$ pairs $(x_T, y_T)_{T\in\mathcal T}$ that sends $y_T \mapsto y_T + x_T$ over $\F_2$ for every $T$, and restores all scratch wires whatever their initial values \cite[Lemma~5]{OAI}. It has two kinds of scratch wire.
+\begin{itemize}[leftmargin=*]
+\item \textbf{Centre wires.} For each point $q$, one wire gathers $\sum_{S\ni q}x_S$ and adds it to every $y_T$ with $T\ni q$. Together they add $C(S,T) = |S\cap T| \bmod 2$, which is $1$ on the diagonal and on pairs with $|S\cap T| = 1$, and $0$ otherwise. Each centre wire has one decreasing edge, which loses exactly $h$ dimensions.
+\item \textbf{Side wires.} These cancel the off-diagonal ones of $C$. Each such \emph{cell} $(S,T)$ has $|S\cap T| = 1$, so it has a unique \emph{kernel} $q = S\cap T$, and $S = q+P$, $T = q+Q$ for disjoint pairs $P, Q$ of the other $n = h-1$ points. The paper uses one side wire per cell, i.e.\ $z = 3\binom{h-3}{2}$ per triple. Its label chain runs from $\langle t_S\rangle$ to $\langle t_T\rangle^\perp$ and is increasing because $t_S\perp t_T$.
+\end{itemize}
+With $I = 3v^2$ invocations, \cite[Prop.~7]{OAI} gives $W_b = 2N + I(vz + h)$ and $L_b = I\cdot h\cdot h$, and $s_b$ as in \eqref{eq:s}.
+
+\subsection{Per-stage designs and scratch reuse (package D)}\label{sec:stages}
+
+Nothing forces the three stages to use the same ground set. With stage $j$ on $h_j$ points ($v_j = \binom{h_j}3$), we get $m = h_1h_2h_3$, $N = v_1v_2v_3$, and stage $j$ has $N/v_j$ invocations. If $\mathrm{side}_j$ is the number of side and copy wires per invocation, then
+\[
+\mathrm{scr}_j = \frac{N}{v_j}\,(\mathrm{side}_j + h_j), \qquad L = \sum_{j=1}^3 \frac{N}{v_j}\,h_j^2 .
+\]
+
+\begin{lemma}[stage $1\to3$ reuse]\label{lem:reuse}
+If $h_1 = h_3$, every stage-3 scratch wire can be a continuation of a stage-1 scratch wire with no loss. Hence $W = 2N + \mathrm{scr}_1 + \mathrm{scr}_2$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+A stage-1 scratch wire of invocation $(a_2,a_3)$ ends with label $F\otimes t_{a_2}\otimes t_{a_3}$. A stage-3 invocation $(a_1',a_2')$ has $\Pi = t_{a_1'}\otimes t_{a_2'}$ and $B = \Pi^\perp\subset F\otimes F$, and every one of its scratch wires starts at a label containing $B\otimes\langle t_{S'}\rangle$ (side wires) or equal to $B\otimes F$. If $|a_2\cap a_2'| = 1$, then $t_{a_2}\perp t_{a_2'}$, so $F\otimes t_{a_2}\subseteq B$. Hence the stage-1 end label lies inside the stage-3 start label (for side wires, choose $S' = a_3$). The continuation edge is increasing, and its residual is an orthogonal complement, hence nondegenerate. The bipartite graph joining $(a_2,a_3)$ to $(a_1',a_2')$ when $|a_2\cap a_2'| = 1$ is regular with equal supplies on both sides, so an integral $b$-matching assigns every stage-3 scratch wire to a distinct stage-1 wire.
+\end{proof}
+
+Continuing stage~1 into stage~2, or stage~2 into stage~3, is not free. The restore gates read $X$ after the centre gather, so scratch wires end at the full label, and continuing them costs one rank per wire.
+
+\subsection{Grouped side gates (packages F and G)}
+
+A gate may touch a data wire several times without creating new wires: in \cite{OAI} a wire is a source, the gates touching it in time order, and a sink. Packages F and G let one side wire serve a group of cells: sunflower groups of size at most $5$ (F), then laminar binary-tree groups per kernel (G). At $h = 48$, G reduces side wires to $0.181\,vz$. Package H supersedes both.
+
+\subsection{Side rectangles and copy wires (package H)}
+
+Fix an invocation and a kernel $q$. For a set $G$ of pairs of $[h]\setminus\{q\}$, write $q+G = \{q+P : P\in G\}$ and $\spn t_{q+G} = \spn\{t_{q+P}: P\in G\}$, and let $\operatorname{supp} G$ be the set of points covered by $G$.
+
+\begin{lemma}[rectangle side wires]\label{lem:rect}
+Let $G, H$ be sets of pairs with $\operatorname{supp} G\cap\operatorname{supp} H = \emptyset$. One wire that carries $\sum_{P\in G}x_{q+P}$ and adds it to every $y_{q+Q}$, $Q\in H$, has the increasing local label chain
+\[
+0 \ \subset\ \spn t_{q+G}\ \subseteq\ (\spn t_{q+H})^\perp\ \subset\ F
+\]
+and it cancels exactly the cells $(q+G)\times(q+H)$.
+\end{lemma}
+
+The middle inclusion holds because every $S\in q+G$, $T\in q+H$ meet only in $q$, so $t_S\perp t_T$. Over $\F_2$ the side wires must cancel each cell an odd number of times; we use partitions. The sums $\sum_{P\in G}x_{q+P}$ are formed on \emph{copy wires} and the results are scattered through \emph{accumulators}. A copy wire passes through a sequence of nodes, and its label must increase along the way, so the nodes on one copy wire must form a chain under span inclusion. The number of copy wires that triple $S$ needs on the source side is therefore the Dilworth width \cite{Dilworth} of the set of source nodes containing $S$, and similarly on the target side. The data wires $X_S$ and $Y_S$ themselves serve as one chain each. Per invocation,
+\begin{equation}\label{eq:side}
+\mathrm{side} = \#\text{rectangles} + \#\text{source chains} + \#\text{target chains} - 2\binom h3 .
+\end{equation}
+Every node label must be nondegenerate for $I-J/9$; this is checked explicitly (Section~\ref{sec:verification}).
+
+\subsection{The sorted cover (package I)}
+
+Order the $n$ points of $[h]\setminus\{q\}$. For a cell with $P = (x_1<x_2)$ and $Q = (z_1<z_2)$, the rectangle is chosen by the interleaving pattern, using the node families
+\begin{align*}
+\mathrm{Wpre}(z) &= \{(a,b) : b<z\}, & \mathrm{rowfrom}(x) &= \{(x,b)\},\\
+\mathrm{rowsuf}(x,z) &= \{(x,b): b>z\}, & \mathrm{colpre}(z,x) &= \{(a,x): a<z\},\\
+\mathrm{colmid}(z,x) &= \{(a,x): a>z\}.
+\end{align*}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+pattern & source node $G$ & target node $H$ \\
+\midrule
+$x_2<z_1$ (PPQQ) & $\mathrm{Wpre}(z_1)$ & $\mathrm{rowfrom}(z_1)$ \\
+$z_2<x_1$ (QQPP) & $\mathrm{rowfrom}(x_1)$ & $\mathrm{Wpre}(x_1)$ \\
+$x_1<z_1<x_2<z_2$ (PQPQ) & $\mathrm{colpre}(z_1,x_2)$ & $\mathrm{rowsuf}(z_1,x_2)$ \\
+$z_1<x_1<z_2<x_2$ (QPQP) & $\mathrm{rowsuf}(x_1,z_2)$ & $\mathrm{colpre}(x_1,z_2)$ \\
+$x_1<z_1<z_2<x_2$ (PQQP) & $\mathrm{rowsuf}(x_1,z_2)$ & $\mathrm{colmid}(x_1,z_2)$ \\
+$z_1<x_1<x_2<z_2$ (QPPQ) & $\mathrm{colmid}(z_1,x_2)$ & $\mathrm{rowsuf}(z_1,x_2)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each rule's $G$ and $H$ have disjoint supports, and each cell lies in exactly one rectangle $G\times H$ (both facts are asserted by the code). The cover uses about $3.76\binom n2$ rectangles per kernel: $4606$ at $n = 50$ and $4416$ at $n = 49$. The per-kernel chain width is $3$. At $n = 47$ it uses $4048$ rectangles against an $\F_2$-rank lower bound of $3960$ for the four interleaved order types, so it is within $2.2\%$ of that bound.
+
+\subsection{Chains across kernels (packages J and K)}
+
+A copy wire needs only nested spans along its route, and equal spans are allowed. A triple $S = \{q,a,b\}$ has nodes in the three kernels $q,a,b$. A node in kernel $q$ that consists of all triples through $\{q,a\}$ spans the same space as a node in kernel $a$ with the same triple set. So one copy wire may pass through nodes of different kernels of $S$, provided all nodes are visited in one global time order. We order nodes globally by (span rank, key) and compute, for each triple, the Dilworth width of all its source (target) nodes over its three kernels.
+
+\paragraph{Package J (one global point order).} The interior width drops from $3+3+3 = 9$ to $7$ per side. The total number of source chains per invocation is
+\[
+\tfrac16\bigl(7h^3 - 39h^2 + 26h + 102\bigr),
+\]
+fitted on $h = 14,\dots,20$ and exact for $h = 9,\dots,13, 15, 26, 30, 34$.
+
+\paragraph{Package K (cyclic point orders).} Kernel $q$ orders the other points as $q+1, q+2, \dots, q-1 \pmod h$. Let the cyclic gaps of a triple be $(g_1,g_2,g_3)$, with $g_1+g_2+g_3 = h$. The width per side is
+\[
+\begin{cases}
+6 & \text{if all } g_i\ge 2,\\
+3 & \text{if exactly one } g_i = 1 \text{ (2 for one composition per position)},\\
+2 & \text{if two } g_i = 1 .
+\end{cases}
+\]
+Summing over triples gives
+\[
+\tfrac h3\Bigl[6\tbinom{h-4}{2} + 3\bigl(3(h-5)+2\bigr) + 6\Bigr] = h(h-3)^2
+\]
+per side. This is exact for $h = 9,\dots,19, 23, 26, 31$. Hence, by \eqref{eq:side},
+\[
+\mathrm{side}_K(h) = h\cdot\mathrm{rects}(h-1) + 2h(h-3)^2 - 2\binom h3 .
+\]
+Simulated annealing over independent per-kernel orders and a hill climb over cyclic offsets did not find a better order (Section~\ref{sec:limits}).
+
+\subsection{Stages 2 and 3}
+
+Stage~2 is the dual network: its gates run in reverse order (the $\F_2$ gates are involutions), the $X$ and $Y$ banks swap roles, and every local label $U$ becomes $U^\perp$. Inclusions and time both reverse, so chains stay nested and the centre loss is unchanged. Stage $j\ge 2$ embeds local labels by $U\mapsto B\otimes F + \Pi\otimes U$ (in stage~1, $B = 0$ and $\Pi$ is trivial), which is monotone and preserves nondegeneracy. Every scratch wire still starts at $B\otimes F$ and ends at $A\otimes F$ (with $A\supset B$ the ambient space of the other two factors), so Lemma~\ref{lem:reuse} still applies.
+
+\subsection{Final counts}
+
+For package K with stages $(51,50,51)$, the cover has $\mathrm{rects}(50) = 4606$ and $\mathrm{rects}(49) = 4416$, so
+\[
+\mathrm{side}_K(51) = 428264 \ (= 20.565\,v_1), \qquad \mathrm{side}_K(50) = 402500 \ (= 20.536\,v_2),
+\]
+and
+\begin{gather*}
+N = 8\,500\,140\,250\,000,\qquad m = 130\,050,\qquad W = 366\,403\,749\,643\,750,\\
+L = 3\,207\,501\,902\,500,\qquad s = 47\,650\,805\,556\,033\,242\,500,
+\end{gather*}
+giving $2L < N$, $s < Wm$, $\eta = 4.3759\cdot 10^{-8}$ and $\theta_b = 2^{-28.004}$.

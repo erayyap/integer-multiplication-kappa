@@ -1,0 +1,37 @@
+\section{Changes outside the bit network}\label{sec:outside}
+
+\subsection{Package A3: re-tuned constants}
+Package A3 leaves the algorithm unchanged. It reproduces the paper's network counts exactly (for $h=100$: $W_b$, $W_c$, $s_b$, $s_c$ as in \cite[\S3]{OAI}). It then chooses the ground-set sizes $h$ of the two motif networks and all fixed rationals in \eqref{eq:layer} and \cite[\S9.1]{OAI} to balance the margins: bit network $h=46$, complex network $h=25$. Under the paper's original conditions, in particular $\varepsilon(2-\tau) < 1-\tau$, this gives $\kappa = 2^{-109.084}$.
+
+\subsection{Package B: axis exposure by non-adjacent interchanges}
+In \cite[\S8]{OAI}, exposing and restoring one axis uses $O(d)$ \emph{adjacent} interchanges of address fields, each costing $O(Tp(1+\ell^\tau))$, so all axes cost $O(d^2)$ interchanges. This is the row $d^2(1+\ell^\tau)$ of the cost table, and it forces $\varepsilon(2-\tau) < 1-\tau$, i.e.\ $\varepsilon \lesssim \theta_b$.
+
+Proposition~11 of \cite{OAI} interchanges two chunks of equal width with arbitrary fields between them, at the same cost as adjacent chunks. An axis can therefore be moved to the exposed position by a constant number of interchanges of non-adjacent chunks: peel one excess bit when the widths differ, as in \cite[\S8]{OAI}, and then interchange the equal-width parts directly. All $d$ axes then cost $O(d)$ interchanges. The row becomes $d(1+\ell^\tau)$ with power $\varepsilon + \tau(1-\varepsilon)$, so
+\[
+g_4 = (1-\tau)(1-\varepsilon),
+\]
+and $\varepsilon$ is no longer tied to $\theta_b$. Package B keeps the paper's guard $\varepsilon C_1 < 1$ of \cite[Prop.~14]{OAI} with $C_1 = \nu + 3 = 14$, where $\nu = 11$ is the least integer with $m_c^\nu \ge B_c = s_c + 64(W_c + m_c + 1)^3$ for the complex network. This gives $\varepsilon < 1/14$ and $\kappa = 2^{-76.199}$.
+
+\subsection{Package C: $\delta$, the dimension bound and the guard depth}
+\begin{itemize}[leftmargin=*]
+\item Any fixed $0<\delta<1/8$ is allowed by Lemma~19 of \cite{OAI} and by \cite[Lemma~2.12]{HvdH}. We take $\delta = 2^{-20}$.
+\item The convenience bound $\varepsilon < 1/12$ is replaced by what the proof uses: $\gamma = o(b)$ and $2 \le \alpha < \sqrt p$, which hold for $\varepsilon < 1/4$ with the paper's $\alpha$.
+\item In the guard of \cite[Prop.~14]{OAI}, the leaves have size $e < d^\beta$, and there are at most $(1-\beta)\log_m d + 1$ internal levels and at most $md$ pieces. So the guard depth is $\Delta = d^{2+\beta+(1-\beta)\log_m B + o(1)}$, and the guard condition becomes
+\[
+\varepsilon\bigl(2+\beta+(1-\beta)\log_m B\bigr) < 1 .
+\]
+With $1-\beta = 2^{-23.26}$ this is far weaker than $\varepsilon C_1 < 1$. We keep the crude piece count $md$ from \cite{OAI}.
+\end{itemize}
+This gives $\kappa = 2^{-74.978}$.
+
+\subsection{Package E: the resampling parameter $\alpha$}
+Lemma~19 of \cite{OAI} needs $\theta_i = t_i/s_i - 1 > p/\alpha^4$ and $2 \le \alpha < \sqrt p$. Section~9.2.1 of \cite{OAI} sets $\alpha = \lceil (12 d^2 b)^{1/4}\rceil$ and uses $\theta_i > \eta = 1/(4d)$. We set instead
+\[
+\alpha = \bigl\lceil (8dp)^{1/4} \bigr\rceil .
+\]
+Then $\alpha^4\theta_i > 8dp/(4d) = 2p > p$, and $\gamma = 2d\alpha^2 = O(d^{3/2}p^{1/2}) = O(b^{1/2+3\varepsilon/2}) = o(b)$ for $\varepsilon < 1/3$. The Gaussian line maps then cost $dp^{1/2+\delta}\alpha = p^{3/4+\delta+5\varepsilon/4}$ instead of $p^{3/4+\delta+3\varepsilon/2}$, so $g_5 = 1/4 - \delta - 5\varepsilon/4$ and $\varepsilon$ may approach $1/5$. We take $\varepsilon = 1/5 - 2^{-17}$.
+
+The constraint $\varepsilon < 1/5$ is in practice the end of the road for $\varepsilon$. The prime-interval requirement $\eta = 1/(4d)$ forces $\theta_i \approx 1/d$. Relaxing the Gaussian row all the way to the $\gamma$ bound $\varepsilon<1/3$ would add only about $0.74$ bits to $\kappa$.
+
+\subsection{Package D: per-stage designs and scratch reuse}
+Package D is described with the bit network in Section~\ref{sec:stages}.

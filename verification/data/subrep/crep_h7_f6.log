@@ -1,0 +1,7 @@
+restart 0: loss 5.000e+00
+restart 1: loss 5.000e+00
+restart 2: loss 5.000e+00
+restart 3: loss 5.000e+00
+restart 4: loss 5.000e+00
+restart 5: loss 5.000e+00
+h=7 f=6 best 5.000e+00
