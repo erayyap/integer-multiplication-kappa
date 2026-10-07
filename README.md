@@ -1,6 +1,6 @@
-# Readme
+# Improving κ in integer multiplication below n log n
 
-This repository contains mathematical manuscripts and supporting computational artifacts. Its layout follows [openai/math](https://github.com/openai/math).
+This repository contains a manuscript and verification code that improve the exponent κ in the O(n (log n)^{1−κ}) bound of the OpenAI preprint *Integer multiplication below n log n*, from 2^-182 to 2^-59.335. Its layout follows [openai/math](https://github.com/openai/math).
 
 The results were produced by **Claude Opus 5.5** (Anthropic), working as an agent in Claude Code sessions directed by the repository owner. They are computer-assisted and have **not been refereed**. None are formalized in Lean. Some of the arguments are given in outline only; each manuscript says exactly which claims are machine-checked and which are not. Corrections are welcome via issues.
 

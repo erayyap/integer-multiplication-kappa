@@ -24,7 +24,7 @@ tectonic main.tex     # or: latexmk -xelatex main.tex
   author = {Yapağcı, Eray},
   title = {{Integer multiplication below $n\log n$: improving $\kappa$ from $2^{-182}$ to $2^{-59.335}$}},
   howpublished = {Preprint
-                  \href{https://github.com/erayyap/math/blob/main/preprints/Improving-kappa-in-integer-multiplication-below-n-log-n-October-7-2026/paper.pdf}{Improving-kappa-in-integer-multiplication-below-n-log-n-October-7-2026}},
+                  \href{https://github.com/erayyap/integer-multiplication-kappa/blob/main/preprints/Improving-kappa-in-integer-multiplication-below-n-log-n-October-7-2026/paper.pdf}{Improving-kappa-in-integer-multiplication-below-n-log-n-October-7-2026}},
   note = {Produced with Claude Opus 5.5 (Anthropic)},
   year = {2026}
 }
